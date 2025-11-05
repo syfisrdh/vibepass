@@ -1,8 +1,8 @@
-'use strict';
 import bcrypt from 'bcrypt';
+import { QueryInterface, Sequelize } from 'sequelize';
 
-module.exports = {
-  async up (queryInterface, Sequelize) {
+export default {
+  async up(queryInterface: QueryInterface, sequelize: Sequelize): Promise<void> {
     const hashedPassword = await bcrypt.hash('123', 10);
 
     await queryInterface.bulkInsert('users', [
@@ -33,7 +33,7 @@ module.exports = {
     ], {});
   },
 
-  async down (queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('users', null, {});
+  async down(queryInterface: QueryInterface, sequelize: Sequelize): Promise<void> {
+    await queryInterface.bulkDelete('users', {}, {});
   }
 };

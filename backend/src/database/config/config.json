@@ -1,22 +1,22 @@
 {
   "development": {
-    "username": "postgres",
-    "password": "user",
-    "database": "ticket",
+    "username": "root",
+    "password": "postgres",
+    "database": "ticket_db",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "test": {
-    "username": "postgres",
-    "password": "user",
-    "database": "ticket_test",
+    "username": "root",
+    "password": "postgres",
+    "database": "ticket_db",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
   "production": {
-    "username": "postgres",
-    "password": "user",
-    "database": "ticket",
+    "username": "root",
+    "password": "postgres",
+    "database": "ticket_db",
     "host": "127.0.0.1",
     "dialect": "postgres"
   }
