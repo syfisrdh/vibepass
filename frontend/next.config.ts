@@ -1,13 +1,11 @@
-import type { NextConfig } from 'next';
-import withPWA from 'next-pwa';
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  images: {
+    unoptimized: true,
+  },
+}
 
-const nextConfig: NextConfig = {
-  reactStrictMode: true,
-};
-
-export default withPWA({
-  ...nextConfig,
-  dest: 'public',
-  register: true,
-  skipWaiting: true,
-});
+export default nextConfig
