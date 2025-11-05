@@ -62,6 +62,25 @@ interface MobileNavMenuProps {
   onClose: () => void;
 }
 
+const navItems = [
+  {
+    name: "Concerts",
+    link: "/concerts",
+  },
+  {
+    name: "Events",
+    link: "/events",
+  },
+  {
+    name: "Learn More",
+    link: "/learn-more",
+  },
+  {
+    name: "About Us",
+    link: "/about",
+  },
+];
+
 export const Navbar = ({ children, className }: NavbarProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll({
@@ -115,7 +134,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         minWidth: "800px",
       }}
       className={cn(
-        "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full bg-transparent px-4 py-2 lg:flex dark:bg-transparent",
+        "relative z-30 mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-2xl bg-transparent px-4 py-2 lg:flex dark:bg-transparent",
         visible && "bg-white/80 dark:bg-neutral-950/80",
         className
       )}
@@ -131,25 +150,6 @@ export const NavItems = ({
   onItemClick,
 }: NavItemsProps) => {
   const [hovered, setHovered] = useState<number | null>(null);
-
-  const navItems = [
-    {
-      name: "Concerts",
-      link: "/concerts",
-    },
-    {
-      name: "Events",
-      link: "/events",
-    },
-    {
-      name: "Learn More",
-      link: "/learn-more",
-    },
-    {
-      name: "About Us",
-      link: "/about",
-    },
-  ];
 
 
   return (
@@ -185,14 +185,14 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
   return (
     <motion.div
       animate={{
-        backdropFilter: visible ? "blur(10px)" : "none",
+        backdropFilter: visible ? "blur(2px)" : "none",
         boxShadow: visible
           ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
           : "none",
         width: visible ? "90%" : "100%",
         paddingRight: visible ? "12px" : "0px",
         paddingLeft: visible ? "12px" : "0px",
-        borderRadius: visible ? "4px" : "2rem",
+        borderRadius: visible ? "14px" : "2rem",
         y: visible ? 20 : 0,
       }}
       transition={{
@@ -201,7 +201,7 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
         damping: 50,
       }}
       className={cn(
-        "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between bg-transparent px-0 py-2 lg:hidden rounded-2xl",
+        "relative z-30 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between bg-transparent px-0 py-2 lg:hidden rounded-lg",
         visible && "bg-white/80 dark:bg-neutral-950/80",
         className
       )}
@@ -277,7 +277,7 @@ export const NavbarLogo = () => {
       <Image
         src="/logo-horizontal.webp"
         alt="Logo"
-        width={150}
+        width={120}
         height={35}
       />
     </a>
@@ -434,13 +434,52 @@ const AuthNav = () => {
   }
 
   return (
-    <div className="relative z-20 flex flex-row items-center justify-center space-x-4">
-      <link href="/login" className="px-4 py-2 rounded-xl bg-white text-black text-sm font-medium relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center hover:bg-primary/90 hover:text-white">
+    <div className="relative z-20 flex flex-row items-center justify-center space-x-2">
+      <Link href="/login" className="px-4 py-2 rounded-xl  text-neutral-700 dark:text-neutral-300 text-sm font-medium relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center">
         Login
-      </link>
-      <Link href="/signup" className="px-4 py-2 rounded-xl bg-white text-black text-sm font-medium relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center hover:bg-primary/90 hover:text-white">
+      </Link>
+      <Link href="/signup" className="px-4 py-2 rounded-xl bg-primary text-white text-sm font-medium relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center hover:bg-primary/90">
         Sign Up
       </Link>
     </div>
+  );
+};
+
+export const ResizableNavbar = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  return (
+    <Navbar>
+      <NavBody>
+        <NavbarLogo />
+        <NavItems onItemClick={() => setIsMobileMenuOpen(false)} />
+      </NavBody>
+
+      <MobileNav>
+        <MobileNavHeader>
+          <NavbarLogo />
+          <MobileNavToggle
+            isOpen={isMobileMenuOpen}
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          />
+        </MobileNavHeader>
+
+        <MobileNavMenu
+          isOpen={isMobileMenuOpen}
+          onClose={() => setIsMobileMenuOpen(false)}
+        >
+          {navItems.map((item, idx) => (
+            <a
+              key={`mobile-link-${idx}`}
+              href={item.link}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="relative text-neutral-600 dark:text-neutral-300"
+            >
+              <span className="block">{item.name}</span>
+            </a>
+          ))}
+        </MobileNavMenu>
+      </MobileNav>
+    </Navbar>
   );
 };

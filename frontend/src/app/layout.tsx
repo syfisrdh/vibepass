@@ -4,6 +4,7 @@ import "./globals.css";
 
 import { ThemeProvider } from "@/components/theme-providers"
 import { ToastProvider } from "@/components/ui/toast-provider"
+import { ResizableNavbar } from "@/components/ui/resizable-navbar"
 
 const fontSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
@@ -32,6 +33,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <ToastProvider>
+            <ResizableNavbar />
             <main className="relative flex min-h-screen flex-col">
               {children}
             </main>
