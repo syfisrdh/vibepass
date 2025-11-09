@@ -1,5 +1,10 @@
 import { Router } from 'express';
-import { signup, login, forgotPassword, refreshToken } from '../controllers/auth/authentication';
+import {
+  signup,
+  login,
+  forgotPassword,
+  refreshToken
+} from '../controllers/auth/authentication';
 import { loginLimiter } from '../middlewares/rateLimiter';
 
 const router = Router();

@@ -7,6 +7,7 @@ class User extends Model {
   public email!: string;
   public password!: string;
   public role!: number;
+  public is_organizer?: boolean;
   public refresh_token!: string | null;
 
   public readonly createdAt!: Date;
@@ -37,6 +38,11 @@ User.init(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    is_organizer: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+      defaultValue: false
+    },
     refresh_token: {
       type: DataTypes.TEXT,
       allowNull: true,
@@ -45,6 +51,8 @@ User.init(
   {
     tableName: 'users',
     sequelize,
+    createdAt: 'created_at', 
+    updatedAt: 'updated_at', 
   }
 );
 

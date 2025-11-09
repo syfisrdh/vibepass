@@ -12,28 +12,35 @@ module.exports = {
         type: DataTypes.INTEGER,
       },
       role: {
-        type: DataTypes.INTEGER,
         allowNull: false,
+        type: DataTypes.INTEGER,
       },
       name: {
+        allowNull: false,
         type: DataTypes.STRING,
-        allowNull: false
       },
       email: {
-        type: DataTypes.STRING,
+        allowNull: false,
         unique: true,
+        type: DataTypes.STRING,
       },
       password: {
+        allowNull: false,
         type: DataTypes.STRING,
       },
+      is_organizer: {
+        allowNull: false,
+        type: DataTypes.BOOLEAN,
+      },
       refresh_token: {
+        allowNull: true,
         type: DataTypes.TEXT,
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: DataTypes.DATE
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: DataTypes.DATE
       }

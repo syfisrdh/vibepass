@@ -23,7 +23,7 @@ export const signup = async (req: Request, res: Response) => {
       name,
       email,
       password: hashedPassword,
-      role: 0,
+      role: 2,
     });
 
     res.status(201).json({ 

@@ -11,24 +11,27 @@ export default {
         name: 'Syufi Saridih',
         email: 'syufi@example.com',
         password: hashedPassword,
-        createdAt: new Date(),
-        updatedAt: new Date()
+        is_organizer: true,
+        created_at: new Date(),
+        updated_at: new Date()
       },
       {
         role: 2,
         name: 'Hafiz Jumahiddin',
         email: 'hafiz@example.com',
         password: hashedPassword,
-        createdAt: new Date(),
-        updatedAt: new Date()
+        is_organizer: false,
+        created_at: new Date(),
+        updated_at: new Date()
       },
       {
-        role: 3,
+        role: 2,
         name: 'Aziz Alias',
         email: 'aziz@example.com',
         password: hashedPassword,
-        createdAt: new Date(),
-        updatedAt: new Date()
+        is_organizer: true,
+        created_at: new Date(),
+        updated_at: new Date()
       }
     ], {});
   },
